@@ -110,5 +110,9 @@ form {
  color: #359AF0;
 }
 
+footer {
+    margin: 0 auto;
+    max-width: 70%;
+}
 
 
