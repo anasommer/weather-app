@@ -1,0 +1,114 @@
+body {
+    color: #2074C7;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.container{
+    margin: 40px auto;
+    padding: 20px;
+    max-width: 70%;
+    border: 2px solid #69CDC6;
+    border-radius: 4px;
+}
+
+.city {
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    color:#1C70C6;
+}
+
+.city:hover {
+    color: #69CDC6;
+}
+
+form {
+    margin-top: 10px;
+}
+
+.search-bar {
+    border: 2px solid #69CDC6;
+    border-radius: 2px;
+}
+
+.search-bar:focus {
+    outline-color: #69CDC6;
+    box-shadow: 0 0 10px #69CDC6;
+}
+
+.search-bar::placeholder {
+    color: #d6342f;
+    padding-left: 10px;
+}
+
+.button {
+    background-color: #69CDC6;
+    border: 2px solid #69CDC6;
+    color: #fff;
+    transition: all 0.4s ease-in-out;
+}
+
+.button:hover {
+    cursor: pointer;
+    background-color: #fff;
+    color: #69CDC6;
+}
+
+.current-city {
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.current-city h2 {
+    font-size: 30px;
+
+}
+
+.weather-today {
+    font-style: italic;
+
+}
+
+.temperature {
+    padding-left: 10px;
+    font-size: 40px;
+}
+
+#celsius:hover,
+#fahrenheit:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.long-term {
+    font-style: italic;
+}
+
+.long-term span {
+    display: block;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    padding-left: 5px;
+}
+
+/* Icon styles */
+.fas {
+    font-size: 36px;
+}
+
+.cloud {
+    color: #ACAFB2;
+}
+
+.sun {
+    color: #F7C233;
+}
+
+.rain {
+ color: #359AF0;
+}
+
+
+
