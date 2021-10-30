@@ -2,6 +2,7 @@
 let apiKey = `3ea6115fe9b400fd4e84271df155a977`;
 let form = document.querySelector("#form");
 let temperature = null
+let tempEl = document.querySelector('#showTemp')
 let celsius = document.querySelector('#celsius')
 let fahrenheit = document.querySelector('#fahrenheit')
 
@@ -36,7 +37,7 @@ showDate();
 function showWeather(response) {
   temperature = response.data.main.temp
   document.querySelector('#city').innerHTML = response.data.name
-  document.querySelector('#showTemp').innerHTML = Math.round(temperature)
+  tempEl.innerHTML = Math.round(temperature)
   document.querySelector('#humidity').innerHTML = response.data.main.humidity
   document.querySelector('#wind').innerHTML = Math.round(response.data.wind.speed)
   document.querySelector('#description').innerHTML = response.data.weather[0].main
@@ -47,7 +48,6 @@ function searchCity(event) {
   event.preventDefault()
   let cityName = document.querySelector('#search-bar').value
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`
-
   axios.get(url).then(showWeather)
 }
 
@@ -71,7 +71,22 @@ function getCurrentLocation(event) {
 let currentLocationBtn = document.querySelector('#currentCityBtn')
 currentLocationBtn.addEventListener('click', getCurrentLocation)
 
-// Unit conversion
+// Convert temperatures
+function convertToFarehneit() {
+  fahrenheit.classList.add('active')
+  celsius.classList.remove('active')
+  tempEl.innerHTML = Math.round((temperature * 9/5) + 32)
+}
+
+fahrenheit.addEventListener('click', convertToFarehneit)
+
+function convertToCelsius() {
+  celsius.classList.add('active')
+  fahrenheit.classList.remove('active')
+  tempEl.innerHTML = Math.round(temperature)
+}
+
+celsius.addEventListener('click', convertToCelsius)
 
 // Weather description
 
