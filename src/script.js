@@ -5,6 +5,7 @@ let temperature = null
 let tempEl = document.querySelector('#showTemp')
 let celsius = document.querySelector('#celsius')
 let fahrenheit = document.querySelector('#fahrenheit')
+let weatherIcon = document.querySelector('#weatherIcon')
 
 function showDate() {
   let date = document.querySelector("#date");
@@ -41,6 +42,7 @@ function showWeather(response) {
   document.querySelector('#humidity').innerHTML = response.data.main.humidity
   document.querySelector('#wind').innerHTML = Math.round(response.data.wind.speed)
   document.querySelector('#description').innerHTML = response.data.weather[0].main
+  weatherIcon.setAttribute('src', `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png` )
 }
 
 // Search for the entered city
@@ -88,6 +90,3 @@ function convertToCelsius() {
 
 celsius.addEventListener('click', convertToCelsius)
 
-// Weather description
-
-// Weather icon update
