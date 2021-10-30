@@ -1,6 +1,8 @@
 body {
     color: #2074C7;
     font-family: 'Open Sans', sans-serif;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 .container{
@@ -75,10 +77,24 @@ form {
     font-size: 40px;
 }
 
-#celsius:hover,
-#fahrenheit:hover {
+.units {
+    position: relative;
+    font-size: 20px;
+    top: -20px;
+}
+
+.units:hover{
     cursor: pointer;
     text-decoration: underline;
+}
+
+.active {
+    color: rgb(238, 8, 8);
+}
+
+.active:hover {
+    cursor: default;
+    text-decoration: none;
 }
 
 .long-term {
@@ -91,7 +107,6 @@ form {
     font-style: normal;
     font-weight: 600;
     padding-left: 5px;
-    padding-bottom: 20px;
 }
 
 /* Icon styles */
@@ -111,7 +126,9 @@ form {
  color: #359AF0;
 }
 
-small {
+footer {
    font-size: 14px;
+   max-width: 600px;
+   margin: 0 auto;
 }
 
