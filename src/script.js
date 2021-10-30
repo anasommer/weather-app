@@ -1,6 +1,7 @@
 // Global variables
 let apiKey = `3ea6115fe9b400fd4e84271df155a977`;
 let form = document.querySelector("#form");
+
 let temperature = null
 let tempEl = document.querySelector('#showTemp')
 let celsius = document.querySelector('#celsius')
@@ -32,8 +33,6 @@ function showDate() {
   date.innerHTML = `${days[now.getDay()]} ${hours}:${minutes}`;
 }
 
-showDate();
-
 //Show weather of a searched city
 function showWeather(response) {
   temperature = response.data.main.temp
@@ -47,15 +46,19 @@ function showWeather(response) {
 }
 
 // Search for the entered city
-function searchCity(event) {
-  event.preventDefault()
-  let cityName = document.querySelector('#search-bar').value
-  let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`
+function searchCity(city) {
+  let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
   axios.get(url).then(showWeather)
 }
 
+function handleSubmit(event) {
+  event.preventDefault()
+  let cityName = document.querySelector('#search-bar')
+  searchCity(cityName.value)
+}
+
 // Show the entered city on a submit
-form.addEventListener("submit", searchCity);
+form.addEventListener("submit", handleSubmit);
 
 
 // Find current location
@@ -91,3 +94,5 @@ function convertToCelsius() {
 
 celsius.addEventListener('click', convertToCelsius)
 
+showDate();
+searchCity('New York')
