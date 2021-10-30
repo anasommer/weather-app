@@ -43,6 +43,7 @@ function showWeather(response) {
   document.querySelector('#wind').innerHTML = Math.round(response.data.wind.speed)
   document.querySelector('#description').innerHTML = response.data.weather[0].main
   weatherIcon.setAttribute('src', `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png` )
+  weatherIcon.setAttribute('alt', `${response.data.weather[0].main}`)
 }
 
 // Search for the entered city
