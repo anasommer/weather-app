@@ -32,15 +32,14 @@ function showDate() {
   date.innerHTML = `${days[now.getDay()]} ${hours}:${minutes}`;
 }
 
-function showForecast() {
-  let forecastEl = document.querySelector('#forecast')
-  let forecast= `<div class="col-2">
-  <h3>Sat</h3>
-  <i class="fas fa-sun sun"></i>
-  <span>12°</span>
-</div>`
-forecastEl.innerHTML = forecast
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000)
+  let day = date.getDay()
+  let days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+
+  return days[day]
 }
+
 
 //Show weather of a searched city
 function showWeather(response) {
@@ -53,8 +52,35 @@ function showWeather(response) {
   weatherIcon.setAttribute('src', `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png` )
   weatherIcon.setAttribute('alt', `${response.data.weather[0].main}`)
 
-  showForecast()
-  
+  getForecast(response.data.coord)
+}
+
+function showForecast(response) {
+  let forecast = response.data.daily
+  let forecastEl = document.querySelector('#forecast')
+  let forecastHtml = `<div class='row'>`
+
+  forecast.forEach(function(day, index) {
+    if (index < 5){
+    forecastHtml = forecastHtml + `<div class="col-2">
+  <h3>${formatDay(day.dt)}</h3>
+  <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png"
+  alt=""
+  width="42"'>
+  <span class='max-temp'>${Math.round(day.temp.max)}°</span>
+  <span class='min-temp'>${Math.round(day.temp.min)}°</span>
+</div>
+`
+}
+  });
+
+  forecastHtml = forecastHtml + `</div>`
+  forecastEl.innerHTML = forecastHtml
+}
+
+function getForecast(coordinates) {
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`
+  axios.get(apiUrl).then(showForecast)
 }
 
 // Search for the entered city
