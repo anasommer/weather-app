@@ -32,6 +32,16 @@ function showDate() {
   date.innerHTML = `${days[now.getDay()]} ${hours}:${minutes}`;
 }
 
+function showForecast() {
+  let forecastEl = document.querySelector('#forecast')
+  let forecast= `<div class="col-2">
+  <h3>Sat</h3>
+  <i class="fas fa-sun sun"></i>
+  <span>12°</span>
+</div>`
+forecastEl.innerHTML = forecast
+}
+
 //Show weather of a searched city
 function showWeather(response) {
   temperature = response.data.main.temp
@@ -42,6 +52,9 @@ function showWeather(response) {
   document.querySelector('#description').innerHTML = response.data.weather[0].main
   weatherIcon.setAttribute('src', `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png` )
   weatherIcon.setAttribute('alt', `${response.data.weather[0].main}`)
+
+  showForecast()
+  
 }
 
 // Search for the entered city
@@ -59,7 +72,6 @@ function handleSubmit(event) {
 // Show the entered city on a submit
 form.addEventListener("submit", handleSubmit);
 
-
 // Find current location
 function searchLocation(position) {
   let lat = position.coords.latitude
@@ -76,5 +88,8 @@ function getCurrentLocation(event) {
 let currentLocationBtn = document.querySelector('#currentCityBtn')
 currentLocationBtn.addEventListener('click', getCurrentLocation)
 
+
+
 showDate();
 searchCity('New York')
+
