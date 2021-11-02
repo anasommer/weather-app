@@ -1,7 +1,6 @@
 // Global variables
 let apiKey = `3ea6115fe9b400fd4e84271df155a977`;
 let form = document.querySelector("#form");
-
 let temperature = null
 let tempEl = document.querySelector('#showTemp')
 let celsius = document.querySelector('#celsius')
@@ -76,23 +75,6 @@ function getCurrentLocation(event) {
 
 let currentLocationBtn = document.querySelector('#currentCityBtn')
 currentLocationBtn.addEventListener('click', getCurrentLocation)
-
-// Convert temperatures
-function convertToFarehneit() {
-  fahrenheit.classList.add('active')
-  celsius.classList.remove('active')
-  tempEl.innerHTML = Math.round((temperature * 9/5) + 32)
-}
-
-fahrenheit.addEventListener('click', convertToFarehneit)
-
-function convertToCelsius() {
-  celsius.classList.add('active')
-  fahrenheit.classList.remove('active')
-  tempEl.innerHTML = Math.round(temperature)
-}
-
-celsius.addEventListener('click', convertToCelsius)
 
 showDate();
 searchCity('New York')
