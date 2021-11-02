@@ -4,7 +4,6 @@ let form = document.querySelector("#form");
 let temperature = null
 let tempEl = document.querySelector('#showTemp')
 let celsius = document.querySelector('#celsius')
-let fahrenheit = document.querySelector('#fahrenheit')
 let weatherIcon = document.querySelector('#weatherIcon')
 
 function showDate() {
@@ -49,7 +48,7 @@ function showWeather(response) {
   document.querySelector('#humidity').innerHTML = response.data.main.humidity
   document.querySelector('#wind').innerHTML = Math.round(response.data.wind.speed)
   document.querySelector('#description').innerHTML = response.data.weather[0].main
-  weatherIcon.setAttribute('src', `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png` )
+  weatherIcon.setAttribute('src', `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
   weatherIcon.setAttribute('alt', `${response.data.weather[0].main}`)
 
   getForecast(response.data.coord)
@@ -60,9 +59,9 @@ function showForecast(response) {
   let forecastEl = document.querySelector('#forecast')
   let forecastHtml = `<div class='row'>`
 
-  forecast.forEach(function(day, index) {
-    if (index < 5){
-    forecastHtml = forecastHtml + `<div class="col-2">
+  forecast.forEach(function (day, index) {
+    if (index < 5) {
+      forecastHtml = forecastHtml + `<div class="col-2">
   <h3>${formatDay(day.dt)}</h3>
   <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png"
   alt=""
@@ -71,7 +70,7 @@ function showForecast(response) {
   <span class='min-temp'>${Math.round(day.temp.min)}°</span>
 </div>
 `
-}
+    }
   });
 
   forecastHtml = forecastHtml + `</div>`
@@ -118,4 +117,3 @@ currentLocationBtn.addEventListener('click', getCurrentLocation)
 
 showDate();
 searchCity('New York')
-
